@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: namrata-deployment
+  namespace: namrata
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+        containers:
+        - name: namrata-nginx
+          image: nginx
+          ports:
+          - containerPort: 80
+          resources:
+            limits: 
+                cpu: "100m"
+                memory: "100M"
+            requests:
+                cpu: "100m"
+                memory: "100M"
+

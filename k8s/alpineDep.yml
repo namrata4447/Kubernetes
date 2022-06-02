@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nams-nginxalpine-pod
+  namespace: namrata
+  labels:
+    app: nginx
+spec:
+   containers:
+     - name: nams-nginx-apline
+       image: nginx:alpine
+       ports:
+        - containerPort: 80
+      

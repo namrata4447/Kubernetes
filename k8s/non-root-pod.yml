@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: non-root-pod
+  namespace: namrata
+  labels:
+    app: nonroot
+spec:
+  securityContext:
+    runAsUser: 1000
+    fsGroup: 2000
+  containers:
+     - name: nams-non-root
+       image: redis:alpine
+       ports:
+        - containerPort: 6379

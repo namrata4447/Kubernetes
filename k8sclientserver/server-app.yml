@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-node-app
+  namespace: namrata
+  labels:
+    app: serverapp
+spec:
+  replicas: 1
+  selector:
+     matchLabels:
+       app: serverapp
+  template:
+    metadata:
+       labels:
+          app: serverapp
+    spec:
+      containers:
+      - name: namrata-server-node-app
+        #image: namrata4447/docker-client-server-app:serverlatest
+        image: aamirpinger/server-app-image-name
+        #command: ["sleep","4800"]
+        ports:
+          - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-nodeapp-service
+  namespace: namrata
+spec:
+  type: ClusterIP
+  selector:
+    app: serverapp
+  ports:
+  - name: servernodeapp
+    protocol: TCP
+    port: 5000
+    #targetPort: 2000
+

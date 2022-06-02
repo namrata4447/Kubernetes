@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: messaging-pod
+  namespace: namrata
+  labels:
+    tier: msg
+spec:
+   containers:
+     - name: nams-redis-apline
+       image: redis:alpine
+       ports:
+        - containerPort: 6379
+
+

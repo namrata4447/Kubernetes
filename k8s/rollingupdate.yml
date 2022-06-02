@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+  namespace: namrata
+  labels:
+    app: ngnix1
+spec:
+  replicas: 1
+  selector:
+     matchLabels:
+       app: ngnix1
+  strategy:
+     type: RollingUpdate
+     rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+       labels:
+          app: ngnix1
+    spec:
+      containers:
+      - name: namrata-rolling-update
+        image: nginx:1.16
+        ports:
+        - containerPort: 80
