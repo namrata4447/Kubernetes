@@ -1,0 +1,33 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::827718379108:role/Namrata-Workernode
+      username: system:node:{{EC2PrivateDNSName}}
+    - groups:
+      - eks-console-dashboard-full-access-group
+      rolearn: arn:aws:iam::827718379108:role/my-console-viewer-role
+      username: my-console-viewer-role
+  mapUsers: |
+    - groups:
+      - system:masters
+      userarn: arn:aws:iam::827718379108:user/basavarajvinay1702@gmail.com
+      username: basavarajvinay1702@gmail.com
+    - groups:
+      - system:masters
+      userarn: arn:aws:iam::827718379108:user/namratasangamesh28@gmail.com
+      username: namratasangamesh28@gmail.com
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2022-06-07T05:38:54Z"
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "12926"
+  uid: aa91a680-da93-463c-bf0c-fc2007bb812b
+
